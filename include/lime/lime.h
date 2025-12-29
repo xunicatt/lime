@@ -16,6 +16,8 @@
 #ifndef LIME_H
 #define LIME_H
 
+#include <format>
+
 #include "http/http.h"
 #include "json/json.h"
 #include "threadpool/threadpool.h"
@@ -26,7 +28,7 @@ namespace lime {
     inline constexpr uint8_t Major = 2;
     inline constexpr uint8_t Minor = 0;
     inline constexpr uint8_t Patch = 0;
-    inline constexpr uint8_t EarlyRelease = 1;
+    inline constexpr uint8_t EarlyRelease = 2;
 
     [[nodiscard]]
     constexpr inline std::string to_string() {

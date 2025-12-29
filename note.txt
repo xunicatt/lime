@@ -1,6 +1,15 @@
-v2.0.0.er1 (early release)
+v2.0.0.er2 (early release)
 
 ** THIS IS AN EARLY RELEASE OF v2.0.0 **
 
+added:
+- added experimental support for C bindings (partial)
+
 changes:
-- minor refactoring and code style changes
+- restructured and finalized the project structure
+- finalized the installation path
+- fixed header in tests and examples from 'lime.h' -> 'lime/lime.h'
+- made the project a shared dynamic library from static
+
+fixes:
+- fixed missing <format> header inclusion in 'lime/lime.h'

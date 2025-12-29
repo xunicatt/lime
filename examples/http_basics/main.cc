@@ -2,7 +2,7 @@
 #include <cerrno>
 #include <print>
 #include <cstring>
-#include <lime.h>
+#include <lime/lime.h>
 
 int main() {
   namespace http = lime::http;
