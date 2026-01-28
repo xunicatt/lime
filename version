@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# bash script to generate:
+#   - lime/version.h
+#   - clime/version.h
+#   - version for cmake & meson
+
+VERSION=2.0.0.3
+IFS='.' read -r MAJOR MINOR PATCH EARLYRELEASE <<< "$VERSION"
+
+VERSION_STR=""
+
+if [[ $EARLYRELEASE -eq 0 ]]; then
+  VERSION_STR="$MAJOR.$MINOR.$PATCH"
+else
+  VERSION_STR="$MAJOR.$MINOR.$PATCH.$EARLYRELEASE"
+fi
+
+cat <<EOF > include/clime/version.h
+#ifndef CLIME_VERSION_H
+#define CLIME_VERSION_H
+
+#define VERSION_MAJOR $MAJOR
+#define VERSION_MINOR $MINOR
+#define VERSION_PATCH $PATCH
+#define VERSION_EARLYRELEASE $EARLYRELEASE
+#define VERSION_STR "$VERSION_STR"
+
+#endif // CLIME_VERSION_H
+EOF
+
+cat <<EOF > include/lime/version.h
+#ifndef LIME_VERSION_H
+#define LIME_VERSION_H
+
+#define VERSION_MAJOR $MAJOR
+#define VERSION_MINOR $MINOR
+#define VERSION_PATCH $PATCH
+#define VERSION_EARLYRELEASE $EARLYRELEASE
+#define VERSION_STR "$VERSION_STR"
+
+#endif // CLIME_VERSION_H
+EOF
+
+echo $VERSION_STR

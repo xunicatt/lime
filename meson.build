@@ -1,7 +1,10 @@
 project(
   'lime',
   'cpp',
-  version: '2.0.0.3',
+  version: run_command(
+    ['bash', 'version'],
+    check: true,
+  ).stdout().strip(),
   default_options: [
     'cpp_std=c++23',
     'cpp_flags=-Wall -Werror -Wextra',
@@ -11,6 +14,12 @@ project_description = 'simple and lightweight web framework for C++'
 
 incdir = include_directories('include')
 srcs = files(
+
+  'src/clime/http/methods.cc',
+  'src/clime/http/request.cc',
+  'src/clime/http/response.cc',
+  'src/clime/http/router.cc',
+  'src/clime/http/server.cc',
   'src/lime/http/methods.cc',
   'src/lime/http/request.cc',
   'src/lime/http/response.cc',
@@ -21,12 +30,6 @@ srcs = files(
   'src/lime/json/parser.cc',
   'src/lime/threadpool/threadpool.cc',
   'src/lime/utils/logger.cc',
-
-  'src/clime/http/methods.cc',
-  'src/clime/http/request.cc',
-  'src/clime/http/response.cc',
-  'src/clime/http/router.cc',
-  'src/clime/http/server.cc',
 )
 
 lime = library(

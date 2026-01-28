@@ -1,0 +1,10 @@
+#ifndef LIME_VERSION_H
+#define LIME_VERSION_H
+
+#define VERSION_MAJOR 2
+#define VERSION_MINOR 0
+#define VERSION_PATCH 0
+#define VERSION_EARLYRELEASE 3
+#define VERSION_STR "2.0.0.3"
+
+#endif // CLIME_VERSION_H

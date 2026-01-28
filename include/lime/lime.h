@@ -18,6 +18,7 @@
 
 #include <format>
 
+#include "version.h"
 #include "http/http.h"
 #include "json/json.h"
 #include "threadpool/threadpool.h"
@@ -25,10 +26,10 @@
 
 namespace lime {
   namespace version {
-    inline constexpr uint8_t Major = 2;
-    inline constexpr uint8_t Minor = 0;
-    inline constexpr uint8_t Patch = 0;
-    inline constexpr uint8_t EarlyRelease = 3;
+    inline constexpr uint8_t Major = VERSION_MAJOR;
+    inline constexpr uint8_t Minor = VERSION_MINOR;
+    inline constexpr uint8_t Patch = VERSION_PATCH;
+    inline constexpr uint8_t EarlyRelease = VERSION_EARLYRELEASE;
 
     [[nodiscard]]
     constexpr inline std::string to_string() {
