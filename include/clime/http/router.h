@@ -9,14 +9,14 @@
 extern "C" {
 #endif
 
-typedef LimeHttpResponse(*LimeHttpRouteFunc)(const LimeHttpRequest);
+typedef LimeHttpResponse*(*LimeHttpRouteFunc)(const LimeHttpRequest*);
 
-typedef void* LimeHttpRouter;
+typedef struct LimeHttpRouter LimeHttpRouter;
 
-LimeHttpRouter lime_http_router_create(void);
-void lime_http_router_add(LimeHttpRouter, const char* path, const LimeHttpMethod method, const LimeHttpRouteFunc handler);
-void lime_http_router_add_regex(LimeHttpRouter, const char* path, const LimeHttpMethod method, const LimeHttpRouteFunc handler);
-void lime_http_router_destroy(LimeHttpRouter);
+LimeHttpRouter* LimeHttpRouterCreate(void);
+void LimeHttpRouterAdd(LimeHttpRouter*, const char* path, const LimeHttpMethod method, const LimeHttpRouteFunc handler);
+void LimeHttpRouterAddRegex(LimeHttpRouter*, const char* path, const LimeHttpMethod method, const LimeHttpRouteFunc handler);
+void LimeHttpRouterDestroy(LimeHttpRouter*);
 
 #ifdef __cplusplus
 }

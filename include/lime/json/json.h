@@ -22,6 +22,11 @@ namespace lime {
       Object,
     };
 
+    struct Encode {
+      virtual ~Encode();
+      virtual Node encode() const = 0;
+    };
+
     [[nodiscard]]
     std::string to_string(const NodeType&);
 
@@ -37,7 +42,7 @@ namespace lime {
       Object
     >;
 
-    class Node {
+    class Node: public Encode {
     public:
       // to keep backwards compatibility
       // Node constructor with int is left out
@@ -96,6 +101,8 @@ namespace lime {
       [[nodiscard]]
       std::string to_string() const;
 
+      Node encode() const override;
+
     private:
       Data     m_data;
       NodeType m_type;
@@ -117,6 +124,9 @@ namespace lime {
     */
     [[nodiscard]]
     std::string encode(const Node&);
+
+    [[nodiscard]]
+    std::string encode(const Encode&);
 
     /*
     * @brief Decode the given json string to equivalent json Node.

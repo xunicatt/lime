@@ -1,48 +1,59 @@
+#include <cstdlib>
 #include <lime/lime.h>
 #include <clime/clime.h>
+#include <clime/http/defs.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-LimeHttpServer lime_http_server_create(LimeHttpRouter _router) {
-  auto router = (lime::http::Router*)_router;
-  return new lime::http::Server { *router };
+LimeHttpServer* LimeHttpServerCreate(LimeHttpRouter* router) {
+  LimeHttpServer* server = (LimeHttpServer*)malloc(sizeof(*server));
+  server->handle = new lime::http::Server{ *router->handle };
+  return server;
 }
 
-LimeHttpServer lime_http_server_create_with_workers(LimeHttpRouter _router, const size_t max_workers) {
-  auto router = (lime::http::Router*)_router;
-  return new lime::http::Server { *router, max_workers };
+LimeHttpServer* LimeHttpServerCreateWithWorkers(
+  LimeHttpRouter* router,
+  const size_t max_workers
+) {
+  LimeHttpServer* server = (LimeHttpServer*)malloc(sizeof(*server));
+  server->handle = new lime::http::Server{
+    *router->handle,
+    max_workers
+  };
+  return server;
 }
 
-void lime_http_server_set_port(LimeHttpServer _server, const uint16_t port) {
-  auto server = (lime::http::Server*)_server;
-  server->port(port);
+void LimeHttpServerSetPort(
+  LimeHttpServer* server,
+  const uint16_t port
+) {
+  server->handle->port(port);
 }
 
-uint16_t lime_http_server_get_port(LimeHttpServer _server) {
-  auto server = (lime::http::Server*)_server;
-  return server->port();
+uint16_t LimeHttpServerGetPort(LimeHttpServer* server) {
+  return server->handle->port();
 }
 
-void lime_http_server_set_addrs(LimeHttpServer _server, const char* addrs) {
-  auto server = (lime::http::Server*)_server;
-  server->addrs(addrs);
+void LimeHttpServerSetAddrs(
+  LimeHttpServer* server,
+  const char* addrs
+) {
+  server->handle->addrs(addrs);
 }
 
-const char* lime_http_server_get_addrs(LimeHttpServer _server) {
-  auto server = (lime::http::Server*)_server;
-  return server->addrs().c_str();
+const char* LimeHttpServerGetAddrs(LimeHttpServer* server) {
+  return server->handle->addrs().c_str();
 }
 
-int lime_http_server_run(LimeHttpServer _server) {
-  auto server = (lime::http::Server*)_server;
-  return server->run();
+int LimeHttpServerRun(LimeHttpServer* server) {
+  return server->handle->run();
 }
 
-void lime_http_server_destroy(LimeHttpServer _server) {
-  auto server = (lime::http::Server*)_server;
-  delete server;
+void LimeHttpServerDestroy(LimeHttpServer* server) {
+  delete server->handle;
+  free(server);
 }
 
 #ifdef __cplusplus

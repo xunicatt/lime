@@ -10,16 +10,16 @@
 extern "C" {
 #endif
 
-typedef void* LimeHttpServer;
+typedef struct LimeHttpServer LimeHttpServer;
 
-LimeHttpServer lime_http_server_create(LimeHttpRouter);
-LimeHttpServer lime_http_server_create_with_workers(LimeHttpRouter, const size_t);
-void lime_http_server_set_port(LimeHttpServer, const uint16_t);
-uint16_t lime_http_server_get_port(LimeHttpServer);
-void lime_http_server_set_addrs(LimeHttpServer, const char*);
-const char* lime_http_server_get_addrs(LimeHttpServer);
-int lime_http_server_run(LimeHttpServer);
-void lime_http_server_destroy(LimeHttpServer);
+LimeHttpServer* LimeHttpServerCreate(LimeHttpRouter*);
+LimeHttpServer* LimeHttpServerCreateWithWorkers(LimeHttpRouter*, const size_t workers);
+void LimeHttpServerSetPort(LimeHttpServer*, const uint16_t port);
+uint16_t LimeHttpServerGetPort(LimeHttpServer*);
+void LimeHttpServerSetAddrs(LimeHttpServer*, const char* addrs);
+const char* LimeHttpServerGetAddrs(LimeHttpServer*);
+int LimeHttpServerRun(LimeHttpServer*);
+void LimeHttpServerDestroy(LimeHttpServer*);
 
 #ifdef __cplusplus
 }

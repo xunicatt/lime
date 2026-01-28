@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-const char* lime_http_method_to_string(const LimeHttpMethod m) {
+const char* LimeHttpMethodToString(const LimeHttpMethod m) {
   switch (m) {
     case LIME_HTTP_METHOD_GET: return "GET";
     case LIME_HTTP_METHOD_POST: return "POST";

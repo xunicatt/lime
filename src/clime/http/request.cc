@@ -1,51 +1,56 @@
 #include <lime/lime.h>
 #include <clime/clime.h>
+#include <clime/http/defs.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-LimeHttpMethod lime_http_request_get_method(LimeHttpRequest _req) {
-  auto req = (lime::http::Request*)_req;
-  return static_cast<LimeHttpMethod>(req->method);
+LimeHttpRequest* LimeHttpRequestCreate(void) {
+  LimeHttpRequest* req = (LimeHttpRequest*)malloc(sizeof(*req));
+  req->handle = new lime::http::Request{};
+  return req;
 }
 
-const char* lime_http_request_get_url(LimeHttpRequest _req) {
-  auto req = (lime::http::Request*)_req;
-  return req->url.c_str();
+LimeHttpMethod LimeHttpRequestGetMethod(LimeHttpRequest* req) {
+  return static_cast<LimeHttpMethod>(req->handle->method);
 }
 
-bool lime_http_request_has_param(LimeHttpRequest _req, const char* key) {
-  auto req = (lime::http::Request*)_req;
-  return req->params.contains(key);
+const char* LimeHttpRequestGetUrl(LimeHttpRequest* req) {
+  return req->handle->url.c_str();
 }
 
-const char* lime_http_request_get_param(LimeHttpRequest _req, const char* key) {
-  if (!lime_http_request_has_param(_req, key)) {
+bool LimeHttpRequestHasParam(LimeHttpRequest* req, const char* key) {
+  return req->handle->params.contains(key);
+}
+
+const char* LimeHttpRequestGetParam(LimeHttpRequest* req, const char* key) {
+  if (!LimeHttpRequestHasParam(req, key)) {
     return NULL;
   }
 
-  auto req = (lime::http::Request*)_req;
-  return req->params.at(key).c_str();
+  return req->handle->params.at(key).c_str();
 }
 
-bool lime_http_request_has_header(LimeHttpRequest _req, const char* key) {
-  auto req = (lime::http::Request*)_req;
-  return req->header.contains(key);
+bool LimeHttpRequestHasHeader(LimeHttpRequest* req, const char* key) {
+  return req->handle->header.contains(key);
 }
 
-const char* lime_http_request_get_header(LimeHttpRequest _req, const char* key) {
-  if (!lime_http_request_has_param(_req, key)) {
+const char* LimeHttpRequestGetHeader(LimeHttpRequest* req, const char* key) {
+  if (!LimeHttpRequestHasParam(req, key)) {
       return NULL;
-    }
+  }
 
-  auto req = (lime::http::Request*)_req;
-    return req->header.at(key).c_str();
+  return req->handle->header.at(key).c_str();
 }
 
-const char* lime_http_request_get_body(LimeHttpRequest _req) {
-  auto req = (lime::http::Request*)_req;
-  return req->body.c_str();
+const char* LimeHttpRequestGetBody(LimeHttpRequest* req) {
+  return req->handle->body.c_str();
+}
+
+void LimeHttpRequestDestroy(LimeHttpRequest* req) {
+  delete req->handle;
+  free(req);
 }
 
 #ifdef __cplusplus

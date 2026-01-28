@@ -31,6 +31,7 @@ namespace lime {
               if (i < arr.size() - 1) {
                 res += ", ";
               }
+              i++;
             }
             res += "]";
             return res;
@@ -55,6 +56,9 @@ namespace lime {
         }
       }
     }
+
+    Encode::~Encode() {}
+
     Node::Node()
     : m_type(NodeType::Null) {}
 
@@ -94,12 +98,20 @@ namespace lime {
       return m_data;
     }
 
+    Node Node::encode() const {
+      return *this;
+    }
+
     std::string Node::to_string() const {
       return data::to_string(m_data);
     }
 
     std::string encode(const Node& node) {
       return node.to_string();
+    }
+
+    std::string encode(const Encode& node) {
+      return node.encode().to_string();
     }
 
     std::expected<Node, std::string> decode(const std::string& data) {

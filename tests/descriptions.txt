@@ -5,3 +5,5 @@
 + test4: Tests parameter passing using url with error handling
 + test5: Tests the basic operations of 'lime::json'
 + test6: Tests null fields in 'lime::json'
++ test7: Tests 'lime::json::Encode' interface
++ test8: Tests lime::http C api

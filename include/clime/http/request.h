@@ -9,15 +9,17 @@
 extern "C" {
 #endif
 
-typedef void* LimeHttpRequest;
+typedef struct LimeHttpRequest LimeHttpRequest;
 
-LimeHttpMethod lime_http_request_get_method(LimeHttpRequest);
-const char* lime_http_request_get_url(LimeHttpRequest);
-bool lime_http_request_has_param(LimeHttpRequest, const char* key);
-const char* lime_http_request_get_param(LimeHttpRequest, const char* key);
-bool lime_http_request_has_header(LimeHttpRequest, const char* key);
-const char* lime_http_request_get_header(LimeHttpRequest, const char* key);
-const char* lime_http_request_get_body(LimeHttpRequest);
+LimeHttpRequest* LimeHttpRequestCreate(void);
+LimeHttpMethod LimeHttpRequestGetMethod(LimeHttpRequest*);
+const char* LimeHttpRequestGetUrl(LimeHttpRequest*);
+bool LimeHttpRequestHasParam(LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetParam(LimeHttpRequest*, const char* key);
+bool LimeHttpRequestHasHeader(LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetHeader(LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetBody(LimeHttpRequest*);
+void LimeHttpRequestDestroy(LimeHttpRequest*);
 
 #ifdef __cplusplus
 }

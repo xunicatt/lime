@@ -16,6 +16,7 @@ paths = [
     "test5",
     "test6",
     "test7",
+    "test8",
 ]
 
 isjson = {
@@ -24,9 +25,18 @@ isjson = {
     "test7": True,
 }
 
+isc = {
+    "test8": True,
+}
+
 CXX = os.environ.get("CXX")
 if CXX is None:
     print("ERROR: No CXX environment variable found! Please read tests/README.txt")
+    exit(1)
+
+CC = os.environ.get("CC")
+if CC is None:
+    print("ERROR: No CC environment variable found! Please read tests/README.txt")
     exit(1)
 
 WAIT = 2
@@ -50,12 +60,39 @@ def moduleflags() -> list[str]:
     return flags
 
 
-def compile(name: str, flags: list[str]):
+def compile_cxx(name: str, flags: list[str]):
     file = f"{name}/{name}.cc"
     gcc = subprocess.Popen(
         [
             f"{CXX}",
             "-std=c++23",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-o",
+            f"{name}.out",
+            file,
+        ]
+        + flags,
+        stderr=subprocess.PIPE,
+        stdout=subprocess.DEVNULL,
+    )
+
+    _, stderr = gcc.communicate()
+    if gcc.returncode != 0:
+        print(f"[ERROR] failed to compile file: {file}")
+        print(stderr.decode("utf-8"))
+        exit(1)
+
+    print(f"[INFO] compiled: {file}")
+
+
+def compile_c(name: str, flags: list[str]):
+    file = f"{name}/{name}.c"
+    gcc = subprocess.Popen(
+        [
+            f"{CC}",
+            "-std=c99",
             "-Wall",
             "-Wextra",
             "-Werror",
@@ -116,7 +153,11 @@ def answers(path: str) -> list[str]:
 
 
 def test(path: str, flags: list[str]):
-    compile(path, flags)
+    if path in isc:
+        compile_c(path, flags)
+    else:
+        compile_cxx(path, flags)
+
     proc = runexe(path)
     time.sleep(WAIT)  # wait for exe to startup
     got = curl(path)

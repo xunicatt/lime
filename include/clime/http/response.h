@@ -7,16 +7,16 @@
 extern "C" {
 #endif
 
-typedef void* LimeHttpResponse;
+typedef struct LimeHttpResponse LimeHttpResponse;
 
-LimeHttpResponse lime_http_response_create_from_body(const char* body);
-LimeHttpResponse lime_http_response_create_from_status_code(const LimeHttpStatusCode status_code);
-LimeHttpResponse lime_http_response_create_from_body_and_status_code(const char*, const LimeHttpStatusCode status_code);
-void lime_http_response_append_header(LimeHttpResponse, const char* id, const char* value);
-void lime_http_response_set_body(LimeHttpResponse, const char* body);
-void lime_http_response_set_status_code(LimeHttpResponse, const LimeHttpStatusCode);
-char* lime_http_response_to_string(LimeHttpResponse);
-void lime_http_response_destroy(LimeHttpResponse);
+LimeHttpResponse* LimeHttpResponseCreateFromBody(const char* body);
+LimeHttpResponse* LimeHttpResponseCreateFromStatusCode(const LimeHttpStatusCode status_code);
+LimeHttpResponse* LimeHttpResponseCreateFromBodyAndStatusCode(const char*, const LimeHttpStatusCode status_code);
+void LimeHttpResponseAppendHeader(LimeHttpResponse*, const char* id, const char* value);
+void LimeHttpResponseSetBody(LimeHttpResponse*, const char* body);
+void LimeHttpResponseSetStatusCode(LimeHttpResponse*, const LimeHttpStatusCode);
+char* LimeHttpResponseToString(LimeHttpResponse*);
+void LimeHttpResponseDestroy(LimeHttpResponse*);
 
 #ifdef __cplusplus
 }

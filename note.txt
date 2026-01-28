@@ -3,5 +3,14 @@ v2.0.0.er3 (early release)
 ** THIS IS AN EARLY RELEASE OF v2.0.0 **
 
 added:
-- null support in json library
-- new test to test null handling in json library
+- added new lime::json::Encode interface which allows struct to get parsed by lime::json::encode function [see test 7 for example]
+- added new test to test lime::json::Encode interface
+- added new test to test C lime::http apis
+- updated tests/test.py to handle C source files
+
+changes:
+- updated C apis with more robust and efficient handlers [see test 8 for example]
+- updated C apis to follow PascalCase for functions [see test 8 for example]
+
+fixed:
+- fixed a bug in lime::json::Array encoding which added unnecessary trailing commas
