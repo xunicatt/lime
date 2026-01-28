@@ -21,6 +21,7 @@ namespace lime {
         case Token::String:       return "string";
         case Token::Invalid:      return "invalid";
         case Token::EndOfFile:    return "end of file";
+        case Token::Null:         return "null";
         default:                  return {};
       }
     }
@@ -140,6 +141,11 @@ namespace lime {
           m_lastloc.cursor,
           m_loc.cursor - m_lastloc.cursor
         );
+
+        if (ident == "null") {
+          return Token::Null;
+        }
+
         if (ident != "true" && ident != "false") {
           return Token::Invalid;
         }
@@ -292,6 +298,9 @@ namespace lime {
 
 
       switch (m_token) {
+        case Token::Null:
+        return Node{};
+
         case Token::LeftBrace:
         return object();
 

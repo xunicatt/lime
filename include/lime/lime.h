@@ -28,7 +28,7 @@ namespace lime {
     inline constexpr uint8_t Major = 2;
     inline constexpr uint8_t Minor = 0;
     inline constexpr uint8_t Patch = 0;
-    inline constexpr uint8_t EarlyRelease = 2;
+    inline constexpr uint8_t EarlyRelease = 3;
 
     [[nodiscard]]
     constexpr inline std::string to_string() {

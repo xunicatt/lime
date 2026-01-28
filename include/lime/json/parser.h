@@ -13,6 +13,7 @@ namespace lime {
       None,
       EndOfFile,
       Invalid,
+      Null,
       Int,
       Float,
       Bool,

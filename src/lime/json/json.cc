@@ -8,6 +8,9 @@ namespace lime {
       [[nodiscard]]
       static std::string to_string(const json::Data& data) {
         switch (static_cast<json::NodeType>(data.index())) {
+          case json::NodeType::Null:
+          return "null";
+
           case json::NodeType::Int:
           return std::to_string(std::get<int64_t>(data));
 
@@ -52,6 +55,8 @@ namespace lime {
         }
       }
     }
+    Node::Node()
+    : m_type(NodeType::Null) {}
 
     Node::Node(const int& data)
     : m_data(data), m_type(NodeType::Int) {}

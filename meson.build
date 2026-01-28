@@ -1,7 +1,7 @@
 project(
   'lime',
   'cpp',
-  version: '2.0.0.2',
+  version: '2.0.0.3',
   default_options: [
     'cpp_std=c++23',
     'cpp_flags=-Wall -Werror -Wextra',

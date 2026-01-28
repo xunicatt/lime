@@ -1,15 +1,7 @@
-v2.0.0.er2 (early release)
+v2.0.0.er3 (early release)
 
 ** THIS IS AN EARLY RELEASE OF v2.0.0 **
 
 added:
-- added experimental support for C bindings (partial)
-
-changes:
-- restructured and finalized the project structure
-- finalized the installation path
-- fixed header in tests and examples from 'lime.h' -> 'lime/lime.h'
-- made the project a shared dynamic library from static
-
-fixes:
-- fixed missing <format> header inclusion in 'lime/lime.h'
+- null support in json library
+- new test to test null handling in json library
