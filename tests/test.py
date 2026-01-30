@@ -17,16 +17,19 @@ paths = [
     "test6",
     "test7",
     "test8",
+    "test9",
 ]
 
 isjson = {
     "test5": True,
     "test6": True,
     "test7": True,
+    "test9": True,
 }
 
 isc = {
     "test8": True,
+    "test9": True,
 }
 
 CXX = os.environ.get("CXX")

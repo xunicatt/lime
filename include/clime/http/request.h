@@ -12,13 +12,13 @@ extern "C" {
 typedef struct LimeHttpRequest LimeHttpRequest;
 
 LimeHttpRequest* LimeHttpRequestCreate(void);
-LimeHttpMethod LimeHttpRequestGetMethod(LimeHttpRequest*);
-const char* LimeHttpRequestGetUrl(LimeHttpRequest*);
-bool LimeHttpRequestHasParam(LimeHttpRequest*, const char* key);
-const char* LimeHttpRequestGetParam(LimeHttpRequest*, const char* key);
-bool LimeHttpRequestHasHeader(LimeHttpRequest*, const char* key);
-const char* LimeHttpRequestGetHeader(LimeHttpRequest*, const char* key);
-const char* LimeHttpRequestGetBody(LimeHttpRequest*);
+LimeHttpMethod LimeHttpRequestGetMethod(const LimeHttpRequest*);
+const char* LimeHttpRequestGetUrl(const LimeHttpRequest*);
+bool LimeHttpRequestHasParam(const LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetParam(const LimeHttpRequest*, const char* key);
+bool LimeHttpRequestHasHeader(const LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetHeader(const LimeHttpRequest*, const char* key);
+const char* LimeHttpRequestGetBody(const LimeHttpRequest*);
 void LimeHttpRequestDestroy(LimeHttpRequest*);
 
 #ifdef __cplusplus

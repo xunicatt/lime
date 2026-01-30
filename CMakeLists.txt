@@ -26,6 +26,7 @@ set(
   src/clime/http/response.cc
   src/clime/http/router.cc
   src/clime/http/server.cc
+  src/clime/json/json.cc
 )
 
 add_library(lime SHARED ${SOURCES})
@@ -54,7 +55,14 @@ install(
 
 install(
   FILES
+  "include/clime/json/json.h"
+  DESTINATION "include/clime/json"
+)
+
+install(
+  FILES
   "include/clime/clime.h"
+  "include/clime/version.h"
   DESTINATION "include/clime/"
 )
 
@@ -91,6 +99,7 @@ install(
 install(
   FILES
   "include/lime/lime.h"
+  "include/lime/version.h"
   DESTINATION "include/lime/"
 )
 

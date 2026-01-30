@@ -12,6 +12,7 @@ typedef enum {
   LIME_HTTP_METHOD_DELETE,
 } LimeHttpMethod ;
 
+// converts the LimeHttpMethod enum value to string
 const char* LimeHttpMethodToString(const LimeHttpMethod);
 
 #ifdef __cplusplus

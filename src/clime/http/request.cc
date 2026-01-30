@@ -12,19 +12,19 @@ LimeHttpRequest* LimeHttpRequestCreate(void) {
   return req;
 }
 
-LimeHttpMethod LimeHttpRequestGetMethod(LimeHttpRequest* req) {
+LimeHttpMethod LimeHttpRequestGetMethod(const LimeHttpRequest* req) {
   return static_cast<LimeHttpMethod>(req->handle->method);
 }
 
-const char* LimeHttpRequestGetUrl(LimeHttpRequest* req) {
+const char* LimeHttpRequestGetUrl(const LimeHttpRequest* req) {
   return req->handle->url.c_str();
 }
 
-bool LimeHttpRequestHasParam(LimeHttpRequest* req, const char* key) {
+bool LimeHttpRequestHasParam(const LimeHttpRequest* req, const char* key) {
   return req->handle->params.contains(key);
 }
 
-const char* LimeHttpRequestGetParam(LimeHttpRequest* req, const char* key) {
+const char* LimeHttpRequestGetParam(const LimeHttpRequest* req, const char* key) {
   if (!LimeHttpRequestHasParam(req, key)) {
     return NULL;
   }
@@ -32,11 +32,11 @@ const char* LimeHttpRequestGetParam(LimeHttpRequest* req, const char* key) {
   return req->handle->params.at(key).c_str();
 }
 
-bool LimeHttpRequestHasHeader(LimeHttpRequest* req, const char* key) {
+bool LimeHttpRequestHasHeader(const LimeHttpRequest* req, const char* key) {
   return req->handle->header.contains(key);
 }
 
-const char* LimeHttpRequestGetHeader(LimeHttpRequest* req, const char* key) {
+const char* LimeHttpRequestGetHeader(const LimeHttpRequest* req, const char* key) {
   if (!LimeHttpRequestHasParam(req, key)) {
       return NULL;
   }
@@ -44,7 +44,7 @@ const char* LimeHttpRequestGetHeader(LimeHttpRequest* req, const char* key) {
   return req->handle->header.at(key).c_str();
 }
 
-const char* LimeHttpRequestGetBody(LimeHttpRequest* req) {
+const char* LimeHttpRequestGetBody(const LimeHttpRequest* req) {
   return req->handle->body.c_str();
 }
 

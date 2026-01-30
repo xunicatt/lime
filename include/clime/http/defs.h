@@ -1,5 +1,5 @@
-#ifndef LIME_HTTP_DEFS_H
-#define LIME_HTTP_DEFS_H
+#ifndef CLIME_HTTP_DEFS_H
+#define CLIME_HTTP_DEFS_H
 
 #include <lime/lime.h>
 

@@ -1,16 +1,19 @@
-v2.0.0.er3 (early release)
+v2.0.0.er4 (early release)
 
 ** THIS IS AN EARLY RELEASE OF v2.0.0 **
 
 added:
-- added new lime::json::Encode interface which allows struct to get parsed by lime::json::encode function [see test 7 for example]
-- added new test to test lime::json::Encode interface
-- added new test to test C lime::http apis
-- updated tests/test.py to handle C source files
+- new C apis for lime::json
+- bash script to auto generate version header files and set version in cmake and meson
+- added new test to test C apis
+- new lime::json::Encode interface to allow custom struct to get parsed by json::encode
 
-changes:
-- updated C apis with more robust and efficient handlers [see test 8 for example]
-- updated C apis to follow PascalCase for functions [see test 8 for example]
+update:
+- updated tests/test.py to handle C source file
+- updated C apis
+- updated build scripts to get version from 'version' script
+- updated build scripts to install the generated version.h header files
+- updated LimeHttpRequest functions to accept const LimeHttpRequest*
 
 fixed:
-- fixed a bug in lime::json::Array encoding which added unnecessary trailing commas
+- fixed a bug in lime::json::Array encoding

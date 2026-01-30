@@ -9,6 +9,7 @@
 
 #include "version.h"
 #include "http/http.h"
+#include "json/json.h"
 
 #define LIME_VERSION_MAJOR VERSION_MAJOR
 #define LIME_VERSION_MINOR VERSION_MINOR

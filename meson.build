@@ -20,6 +20,7 @@ srcs = files(
   'src/clime/http/response.cc',
   'src/clime/http/router.cc',
   'src/clime/http/server.cc',
+  'src/clime/json/json.cc',
   'src/lime/http/methods.cc',
   'src/lime/http/request.cc',
   'src/lime/http/response.cc',
@@ -52,11 +53,13 @@ if not meson.is_subproject()
 
   install_headers(
     'include/lime/lime.h',
+    'include/lime/version.h',
     subdir: meson.project_name() + '/lime/',
   )
 
   install_headers(
     'include/clime/clime.h',
+    'include/clime/version.h',
     subdir: meson.project_name() + '/clime/',
   )
 
@@ -85,6 +88,11 @@ if not meson.is_subproject()
   install_headers(
     'include/lime/json/json.h',
     subdir: meson.project_name() + '/lime/json/',
+  )
+
+  install_headers(
+    'include/clime/json/json.h',
+    subdir: meson.project_name() + '/clime/json/',
   )
 
   install_headers(

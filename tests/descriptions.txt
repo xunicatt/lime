@@ -7,3 +7,4 @@
 + test6: Tests null fields in 'lime::json'
 + test7: Tests 'lime::json::Encode' interface
 + test8: Tests lime::http C api
++ test9: Tests lime::json C api
